@@ -19,7 +19,7 @@ build:
                 name: python unit test
                 code: |
                   python --version
-                  pip install -r conf/requirements.txt
+                  pip install -r requirements.txt
                   pip list
                   sudo apt-get update
                   sudo apt-get install xvfb -y
