@@ -16,7 +16,7 @@ build:
 
         - script:
             name: install firefox
-            code: sudo apt-get install firefox
+            code: apt-get install firefox
 
         - script:
                 name: python unit test
