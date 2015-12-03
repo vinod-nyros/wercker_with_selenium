@@ -18,6 +18,8 @@ build:
         - script:
                 name: python unit test
                 code: |
+                  which firefox
+                  which Xvfb
                   python --version
                   pip install -r requirements.txt
                   pip list
