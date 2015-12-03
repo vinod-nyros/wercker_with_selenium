@@ -4,7 +4,8 @@ import re
 
 from django.test import LiveServerTestCase
 from selenium.webdriver.firefox.webdriver import WebDriver
-
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+from selenium import webdriver
 
 
 class HomeTest(TestCase):
@@ -30,7 +31,8 @@ class MySeleniumTests(LiveServerTestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.selenium = WebDriver()
+        binary = FirefoxBinary('/usr/bin/firefox')
+        cls.selenium = webdriver.Firefox(firefox_binary=binary)
         super(MySeleniumTests, cls).setUpClass()
 
     @classmethod
