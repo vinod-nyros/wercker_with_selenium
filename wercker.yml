@@ -14,6 +14,9 @@ build:
         - install-packages:
             packages: openssh-client
 
+        - script:
+            name: install firefox
+            code: sudo apt-get install firefox
 
         - script:
                 name: python unit test
