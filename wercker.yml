@@ -18,7 +18,7 @@ build:
                 code: |
                   python --version              
                   sudo apt-get purge firefox
-                  sudo apt-get install firefox
+                  sudo apt-get -d install firefox
                   pip install -r requirements.txt
                   #pip list
                   python manage.py test
