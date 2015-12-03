@@ -16,12 +16,12 @@ build:
         - script:
                 name: python unit test
                 code: |
-                  python --version 
                   lsb_release -a
-                  sudo add-apt-repository ppa:mozillateam/firefox-next
-                  sudo apt-get update
-                  sudo apt-get install firefox             
-                  pip install -r requirements.txt
+                  #python --version 
+                  #sudo add-apt-repository ppa:mozillateam/firefox-next
+                  #sudo apt-get update
+                  #sudo apt-get install firefox             
+                  #pip install -r requirements.txt
                   #pip list
                   python manage.py test
                   #sudo apt-get update
