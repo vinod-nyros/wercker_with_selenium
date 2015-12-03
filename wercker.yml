@@ -4,7 +4,8 @@ build:
     steps:
         - script:
             name: install firefox
-            code: sudo apt-get install firefox
+            code:|
+             sudo apt-get install firefox
         - virtualenv
 build:
     steps:
@@ -21,10 +22,6 @@ build:
                   python --version
                   pip install -r requirements.txt
                   pip list
-                  which firefox
-                  which python                  
-                  which Xvfb
-                  which firefox
                   python manage.py test
                   #sudo apt-get update
                   #sudo apt-get install firefox -y
