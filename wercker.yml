@@ -1,34 +1,87 @@
-box: python:2.7
+box: wercker/python
+services:
+  - mies/postgis@0.0.5
 
+# Build definition
 build:
-    steps:
-        - virtualenv
+  # The steps that will be executed on build
+  steps:
+
+    - script:
+        name: set postgis connection string
+        code: |
+          export WERCKER_POSTGRESQL_URL="postgis://$WERCKER_POSTGRESQL_USERNAME:$WERCKER_POSTGRESQL_PASSWORD@$WERCKER_POSTGRESQL_HOST:$WERCKER_POSTGRESQL_PORT/$WERCKER_POSTGRESQL_DATABASE"
+
+    - script:
+        name: Enable virtual display
+        code: |-
+          # Start xvfb which gives the context an virtual display
+          # which is required for tests that require an GUI
+          export DISPLAY=:99.0
+          start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
+          # Give xvfb time to start. 3 seconds is the default for all xvfb-run commands.
+          # sleep 3
+
+    - install-packages:
+        packages: postgresql-client-9.3 postgis
+
+    # Use this virtualenv step for python 3.2
+    - virtualenv:
+        name: setup virtual environment
+        python_location: /usr/bin/python3.2
+
+    - pip-install:
+        name: install requirements.txt
+
+    - pip-install:
+        name: install selenium
+        packages_list: selenium
+        requirements_file: ""
+
+    # A custom script step, name value is used in the UI
+    # and the code value contains the command that get executed
+    - script:
+        name: echo python information
+        code: |
+          echo "python version $(python --version) running"
+          echo "pip version $(pip --version) running"
+    - script:
+        name: run django tests
+        code: |
+          python manage.py  test
 
 
-build:
-    steps:
-        - pip-install
+# box: python:2.7
 
-build:
-    steps:
-        - install-packages:
-            packages: openssh-client
+# build:
+#     steps:
+#         - virtualenv
 
 
-        - script:
-                name: Enable virtual display
-                code: |
-                  python --version
-                  export DISPLAY=:99.0
-                  #start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
-                  sudo start-stop-daemon --start --quiet --pidfile /tmp/firefox_99.pid --make-pidfile --background --exec /usr/bin/firefox -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
-        - script:
-                name: python unit test
-                code: |
-                  python --version
-                  pip install -r requirements.txt
-                  pip list
-                  python manage.py test
+# build:
+#     steps:
+#         - pip-install
+
+# build:
+#     steps:
+#         - install-packages:
+#             packages: openssh-client
+
+
+#         - script:
+#                 name: Enable virtual display
+#                 code: |
+#                   python --version
+#                   export DISPLAY=:99.0
+#                   #start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
+#                   sudo start-stop-daemon --start --quiet --pidfile /tmp/firefox_99.pid --make-pidfile --background --exec /usr/bin/firefox -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
+#         - script:
+#                 name: python unit test
+#                 code: |
+#                   python --version
+#                   pip install -r requirements.txt
+#                   pip list
+#                   python manage.py test
 
 
 
