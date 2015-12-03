@@ -18,7 +18,6 @@ build:
                 code: |
                   python --version              
                   sudo apt-get purge firefox
-                  mv ~/.mozilla ~/mozilla-backup
                   sudo apt-get install firefox
                   pip install -r requirements.txt
                   #pip list
