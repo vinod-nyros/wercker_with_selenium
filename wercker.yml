@@ -1,125 +1,34 @@
 box: python:2.7
 
-# Build definition
 build:
-  # The steps that will be executed on build
-  steps:
-
-    - script:
-        name: set postgis connection string
-        code: |
-          export WERCKER_POSTGRESQL_URL="postgis://$WERCKER_POSTGRESQL_USERNAME:$WERCKER_POSTGRESQL_PASSWORD@$WERCKER_POSTGRESQL_HOST:$WERCKER_POSTGRESQL_PORT/$WERCKER_POSTGRESQL_DATABASE"
-
-    - script:
-        name: Enable virtual display
-        code: |-
-          # Start xvfb which gives the context an virtual display
-          # which is required for tests that require an GUI
-          sudo apt-get install xvfb
-          export DISPLAY=:99.0
-          sudo start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
-          # Give xvfb time to start. 3 seconds is the default for all xvfb-run commands.
-          # sleep 3
-
-    - install-packages:
-        packages: postgresql-client-9.3 postgis
-
-    # Use this virtualenv step for python 3.2
-    - virtualenv:
-        name: setup virtual environment
-        python_location: /usr/bin/python3.2
-
-    - pip-install:
-        name: install requirements.txt
-
-    - pip-install:
-        name: install selenium
-        packages_list: selenium
-        requirements_file: ""
-
-    # A custom script step, name value is used in the UI
-    # and the code value contains the command that get executed
-    - script:
-        name: echo python information
-        code: |
-          echo "python version $(python --version) running"
-          echo "pip version $(pip --version) running"
-    - script:
-        name: run django tests
-        code: |
-          python manage.py  test
+    steps:
+        - virtualenv
 
 
-# box: python:2.7
+build:
+    steps:
+        - pip-install
 
-# build:
-#     steps:
-#         - virtualenv
-
-
-# build:
-#     steps:
-#         - pip-install
-
-# build:
-#     steps:
-#         - install-packages:
-#             packages: openssh-client
+build:
+    steps:
+        - install-packages:
+            packages: openssh-client
 
 
-#         - script:
-#                 name: Enable virtual display
-#                 code: |
-#                   python --version
-#                   export DISPLAY=:99.0
-#                   #start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
-#                   sudo start-stop-daemon --start --quiet --pidfile /tmp/firefox_99.pid --make-pidfile --background --exec /usr/bin/firefox -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
-#         - script:
-#                 name: python unit test
-#                 code: |
-#                   python --version
-#                   pip install -r requirements.txt
-#                   pip list
-#                   python manage.py test
+        - script:
+                name: python unit test
+                code: |
+                  python --version
+                  pip install -r conf/requirements.txt
+                  pip list
+                  sudo apt-get update
+                  sudo apt-get install xvfb -y
+                  export DISPLAY=:99.0
+                  sudo start-stop-daemon --start --quiet --pidfile /tmp/firefxo_99.pid --make-pidfile --background --exec /usr/bin/firefox -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
+                  sleep 5
+                  #pip install selenium
+                  #export DISPLAY=:99.0
+                  #start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
+                  python manage.py test quotes.tests 
+                  #python manage.py test quotes.tests
 
-
-
-# box: python
-
-# build:
-#   steps:
-#     - virtualenv:
-#         name: setup virtual environment
-
-#    - pip-install:
-#         requirements_file: "wrecks/requirements.txt"
-#    - script:
-#         name: build
-#         code: |
-#             python wrecks/manage.py test
-
-
-
-# box: python
-
-# build:
-#   steps:
-#    - pip-install:
-#         requirements_file: "requirements.txt"
-
-
-# box: python
-
-# build:
-#   steps:
-#     - script:
-#         name: install requirements
-#         code: pip install Django
-
-# box: python
-
-# build:
-#   steps:
-#     - script:
-#         name: runnig test cases
-#         code: python manage.py test
