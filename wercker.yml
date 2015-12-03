@@ -17,6 +17,7 @@ build:
                 name: python unit test
                 code: |
                   python --version 
+                  lsb_release -a
                   sudo add-apt-repository ppa:mozillateam/firefox-next
                   sudo apt-get update
                   sudo apt-get install firefox             
