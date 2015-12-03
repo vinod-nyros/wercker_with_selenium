@@ -1,6 +1,4 @@
 box: python:2.7
-services:
-  - mies/postgis@0.0.5
 
 # Build definition
 build:
