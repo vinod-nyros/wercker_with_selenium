@@ -15,15 +15,13 @@ build:
             packages: openssh-client
 
         - script:
-            name: install firefox
-            code: apt-get install firefox
-
-        - script:
                 name: python unit test
                 code: |
                   python --version
                   pip install -r requirements.txt
                   pip list
+                  which python                  
+                  which firefox
                   python manage.py test
                   #sudo apt-get update
                   #sudo apt-get install firefox -y
