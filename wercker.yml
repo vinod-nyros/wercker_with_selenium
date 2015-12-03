@@ -21,7 +21,7 @@ build:
                   python --version
                   export DISPLAY=:99.0
                   #start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
-                  sudo start-stop-daemon --start --quiet --pidfile /tmp/firefox_99.pid --make-pidfile --background --exec /usr/bin/ -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
+                  sudo start-stop-daemon --start --quiet --pidfile /tmp/firefox_99.pid --make-pidfile --background --exec /usr/bin/firefox -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
         - script:
                 name: python unit test
                 code: |
@@ -29,45 +29,3 @@ build:
                   pip install -r requirements.txt
                   pip list
                   python manage.py test
-
-
-
-# box: python
-
-# build:
-#   steps:
-#     - virtualenv:
-#         name: setup virtual environment
-
-#    - pip-install:
-#         requirements_file: "wrecks/requirements.txt"
-#    - script:
-#         name: build
-#         code: |
-#             python wrecks/manage.py test
-
-
-
-# box: python
-
-# build:
-#   steps:
-#    - pip-install:
-#         requirements_file: "requirements.txt"
-
-
-# box: python
-
-# build:
-#   steps:
-#     - script:
-#         name: install requirements
-#         code: pip install Django
-
-# box: python
-
-# build:
-#   steps:
-#     - script:
-#         name: runnig test cases
-#         code: python manage.py test
