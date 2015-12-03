@@ -16,7 +16,7 @@ build:
         - script:
                 name: python unit test
                 code: |
-                  lsb_release -a
+                  sw_vers -productVersion
                   #python --version 
                   #sudo add-apt-repository ppa:mozillateam/firefox-next
                   #sudo apt-get update
