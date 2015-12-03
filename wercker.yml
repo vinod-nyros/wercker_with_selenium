@@ -16,8 +16,7 @@ build:
         - script:
                 name: python unit test
                 code: |
-                  python --version
-                  sudo apt-get -f update
+                  python --version              
                   apt-get install firefox
                   pip install -r requirements.txt
                   #pip list
