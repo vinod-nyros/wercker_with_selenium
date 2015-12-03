@@ -4,7 +4,6 @@ build:
     steps:
         - virtualenv
 
-
 build:
     steps:
         - pip-install
@@ -18,7 +17,8 @@ build:
                 name: python unit test
                 code: |
                   python --version
-                  which firefox
+                  cd ../../
+                  ls
                   pip install -r requirements.txt
                   pip list
                   python manage.py test
