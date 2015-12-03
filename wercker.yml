@@ -18,7 +18,7 @@ build:
                 code: |
                   python --version
                   cd ../../
-                  cd usr/bin
+                  cd usr/local/bin
                   ls
                   #pip install -r requirements.txt
                   #pip list
