@@ -17,12 +17,9 @@ build:
                 name: python unit test
                 code: |
                   python --version
-                  cd ../../
-                  cd usr/local/bin
-                  ls
-                  #pip install -r requirements.txt
+                  pip install -r requirements.txt
                   #pip list
-                  #python manage.py test
+                  python manage.py test
                   #sudo apt-get update
                   #sudo apt-get install firefox -y
                   #export DISPLAY=:99.0
