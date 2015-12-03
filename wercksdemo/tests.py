@@ -27,9 +27,6 @@ class HomeTest(TestCase):
 
 
 class MySeleniumTests(LiveServerTestCase):
-    display = Display(visible=0, size=(800, 600))
-    display.start()
-
     fixtures = ["data/locations.json"]
 
     @classmethod

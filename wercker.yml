@@ -17,7 +17,7 @@ build:
                 name: python unit test
                 code: |
                   python --version
-                  sudo apt-get install xvfb -y
+                  apt-get install firefox
                   pip install -r requirements.txt
                   #pip list
                   python manage.py test
