@@ -1,0 +1,65 @@
+box: python
+
+build:
+    steps:
+        - virtualenv
+
+
+build:
+    steps:
+        - pip-install
+
+build:
+    steps:
+        - install-packages:
+            packages: openssh-client
+
+
+        - script:
+                name: python unit test
+                code: |
+                  python --version
+                  pip install -r requirements.txt
+                  pip list
+                  python manage.py test
+
+
+# box: python
+
+# build:
+#   steps:
+#     - virtualenv:
+#         name: setup virtual environment
+
+#    - pip-install:
+#         requirements_file: "wrecks/requirements.txt"
+#    - script:
+#         name: build
+#         code: |
+#             python wrecks/manage.py test
+
+
+
+# box: python
+
+# build:
+#   steps:
+#    - pip-install:
+#         requirements_file: "requirements.txt"
+
+
+# box: python
+
+# build:
+#   steps:
+#     - script:
+#         name: install requirements
+#         code: pip install Django
+
+# box: python
+
+# build:
+#   steps:
+#     - script:
+#         name: runnig test cases
+#         code: python manage.py test
