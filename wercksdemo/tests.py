@@ -7,9 +7,6 @@ from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium import webdriver
 from pyvirtualdisplay import Display
-display = Display(visible=0, size=(800, 600))
-display.start()
-
 
 class HomeTest(TestCase):
     fixtures = ["cities.json"]
@@ -30,6 +27,9 @@ class HomeTest(TestCase):
 
 
 class MySeleniumTests(LiveServerTestCase):
+    display = Display(visible=0, size=(800, 600))
+    display.start()
+
     fixtures = ["data/locations.json"]
 
     @classmethod
