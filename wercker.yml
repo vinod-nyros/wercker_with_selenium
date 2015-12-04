@@ -16,8 +16,9 @@ build:
         - script:
                 name: python unit test
                 code: |
-                  sudo apt-get install firefox
-                  pip install -r requirements.txt
-                  python manage.py test
+                  wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/42.0/linux-i686/en-US/firefox-42.0.tar.bz2
+                  tar xvf firefox-42.0.tar.bz2
+                  cd firefox
+                  firefox -V
 
 
