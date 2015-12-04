@@ -17,7 +17,10 @@ build:
                 name: python unit test
                 code: |
                   sudo apt-get install libxss1 libappindicator1 libindicator7 -y
-                  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -y
+                  echo "after first step"
+                  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                  echo "after second step"
                   sudo dpkg -i google-chrome*.deb -y
+                  echo "after third  step"
                   pip install -r requirements.txt
                   python manage.py test                   
