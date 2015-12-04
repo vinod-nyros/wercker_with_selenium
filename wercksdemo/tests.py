@@ -31,8 +31,7 @@ class MySeleniumTests(LiveServerTestCase):
 
     @classmethod
     def setUpClass(cls):
-        binary = FirefoxBinary('/usr/bin/firefox')
-        cls.selenium = webdriver.Firefox(firefox_binary=binary)
+        cls.selenium = webdriver.Firefox()
         super(MySeleniumTests, cls).setUpClass()
 
     @classmethod
