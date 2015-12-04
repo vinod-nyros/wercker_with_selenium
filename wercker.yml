@@ -16,7 +16,10 @@ build:
         - script:
                 name: python unit test
                 code: |
-                  sudo apt-get install firefox -y
+                  sudo apt-get install software-properties-common -y
+                  sudo add-apt-repository ppa:mozillateam/firefox-next -y
+                  sudo apt-get update -y
+                  sudo apt-get install firefox
                   pip install -r requirements.txt
                   python manage.py test
                   
