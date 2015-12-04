@@ -16,11 +16,6 @@ build:
         - script:
                 name: python unit test
                 code: |
-                  echo "This is before weget"
-                  wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/42.0/linux-i686/en-US/firefox-42.0.tar.bz2
-                  echo "after wget"
-                  tar xvf firefox-42.0.tar.bz2 -C /opt
-                  echo "Tar compleated"
-                  echo "before test"
+                  sudo apt-get install chrome-browser
                   pip install -r requirements.txt
                   python manage.py test                   
