@@ -1,12 +1,8 @@
 from django.test.client import Client
 from django.test import TestCase
 import re
-
 from django.test import LiveServerTestCase
-from selenium.webdriver.firefox.webdriver import WebDriver
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium import webdriver
-from pyvirtualdisplay import Display
 
 class HomeTest(TestCase):
     fixtures = ["cities.json"]
