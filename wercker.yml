@@ -19,8 +19,6 @@ build:
                   echo "This is before weget"
                   wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/42.0/linux-i686/en-US/firefox-42.0.tar.bz2
                   echo "after wget"
-                  tar xvf firefox-42.0.tar.bz2
+                  ttar -jxvf firefox-15.0.tar.bz2 -C /opt
                   echo "Tar compleated"
-                  cd 
-                  ls
-                   
+                  python manage.py test                   

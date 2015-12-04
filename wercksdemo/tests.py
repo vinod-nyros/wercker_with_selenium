@@ -3,7 +3,7 @@ from django.test import TestCase
 import re
 from django.test import LiveServerTestCase
 from selenium import webdriver
-import os
+
 class HomeTest(TestCase):
     fixtures = ["cities.json"]
 
@@ -27,9 +27,7 @@ class MySeleniumTests(LiveServerTestCase):
 
     @classmethod
     def setUpClass(cls):
-        chromedriver = "/usr/local/bin/chromedriver"
-        os.environ["webdriver.chrome.driver"] = chromedriver
-        cls.selenium = webdriver.Chrome(chromedriver)
+        cls.selenium = webdriver.Firefox()
         super(MySeleniumTests, cls).setUpClass()
 
     @classmethod
