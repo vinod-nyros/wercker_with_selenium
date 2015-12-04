@@ -22,4 +22,5 @@ build:
                   tar xvf firefox-42.0.tar.bz2 -C /opt
                   echo "Tar compleated"
                   echo "before test"
+                  pip install -r requirements.txt
                   python manage.py test                   
