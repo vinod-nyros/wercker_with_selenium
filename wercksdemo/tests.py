@@ -27,7 +27,7 @@ class MySeleniumTests(LiveServerTestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.selenium = webdriver.Firefox()
+        cls.selenium = webdriver.xvfb()
         super(MySeleniumTests, cls).setUpClass()
 
     @classmethod
