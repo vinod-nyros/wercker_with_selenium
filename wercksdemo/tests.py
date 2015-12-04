@@ -3,7 +3,7 @@ from django.test import TestCase
 import re
 from django.test import LiveServerTestCase
 from selenium import webdriver
-
+import os
 class HomeTest(TestCase):
     fixtures = ["cities.json"]
 
