@@ -16,8 +16,18 @@ build:
         - script:
                 name: python unit test
                 code: |
-                  sudo apt-get install xvfb firefox
-                  pip install -r requirements.txt
+                  wget -q -O - http://mozilla.debian.net/archive.asc | sudo apt-key add -
+                  cat << EOF | sudo tee /etc/apt/sources.list.d/mozilla-iceweasel.list
+                  deb http://mozilla.debian.net/ jessie-backports iceweasel-release
+                  EOF
+                  cat << EOF | sudo tee /etc/apt/preferences.d//mozilla-iceweasel
+                  Package: *
+                  Pin: origin mozilla.debian.net
+                  Pin-Priority: 501
+                  EOF
+                  sudo apt-get update
+                  apt-cache policy iceweasel
                   python manage.py test
                   
+
 
