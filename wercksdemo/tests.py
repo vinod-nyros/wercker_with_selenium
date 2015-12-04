@@ -27,7 +27,9 @@ class MySeleniumTests(LiveServerTestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.selenium = webdriver.Chrome()
+        chromedriver = "/usr/local/bin/chromedriver"
+        os.environ["webdriver.chrome.driver"] = chromedriver
+        cls.selenium = webdriver.Chrome(chromedriver)
         super(MySeleniumTests, cls).setUpClass()
 
     @classmethod
