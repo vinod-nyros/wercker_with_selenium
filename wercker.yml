@@ -22,5 +22,6 @@ build:
                   echo "after second step"
                   sudo apt-get install -f
                   echo "after third  step"
+                  which google-chrome
                   pip install -r requirements.txt
                   python manage.py test                   
