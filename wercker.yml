@@ -21,4 +21,6 @@ build:
                   echo "after wget"
                   tar xvf firefox-42.0.tar.bz2
                   echo "Tar compleated" 
-                  firefox -V
+                  cd
+                  ls
+                  firefox --version
