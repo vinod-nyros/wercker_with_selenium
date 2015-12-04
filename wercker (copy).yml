@@ -1,0 +1,37 @@
+box: python
+
+build:
+    steps:
+        - virtualenv
+
+build:
+    steps:
+        - pip-install
+
+build:
+    steps:
+        - install-packages:
+            packages: openssh-client
+
+        - script:
+                name: python unit test
+                code: |
+                  apt-get install software-properties-common
+                  #lsb_release -a
+                  #python --version 
+                  sudo add-apt-repository ppa:mozillateam/firefox-next --noinput
+                  sudo apt-get update
+                  sudo apt-get install firefox             
+                  #pip install -r requirements.txt
+                  #pip list
+                  python manage.py test
+                  #sudo apt-get update
+                  #sudo apt-get install firefox -y
+                  #export DISPLAY=:99.0
+                  #sudo start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
+                  #sleep 5
+                  #pip install selenium
+                  #export DISPLAY=:99.0
+                  #start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
+                  #python manage.py test quotes.tests
+
